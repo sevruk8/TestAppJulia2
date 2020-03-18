@@ -77,7 +77,7 @@ namespace TestAppJulia.Services.StationService
             return station;
         }
 
-        public void UpdateStation(int stationId,StationInfo stationInfo)
+        public void UpdateStation(int stationId, StationInfo stationInfo)
         {
             var station = _dbContext.Stations.First(e => e.Id == stationId);
 

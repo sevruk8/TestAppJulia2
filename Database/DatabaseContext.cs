@@ -21,7 +21,15 @@ namespace Database
         /// Пользователи
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
+
+        /// <summary>
+        /// Пути
+        /// </summary>
         public virtual DbSet<Passage> Passages { get; set; }
+
+        /// <summary>
+        /// Поезда
+        /// </summary>
         public virtual DbSet<Train> Trains { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Database.Database.Entities
 
         public string LastName { get; set; }
 
-        public string login { get; set; }
+        public string Login { get; set; }
 
         public string Password { get; set; }
 
