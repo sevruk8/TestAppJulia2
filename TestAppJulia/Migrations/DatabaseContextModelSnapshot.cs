@@ -82,7 +82,7 @@ namespace TestAppJulia.Migrations
 
                     b.Property<int>("Type");
 
-                    b.Property<string>("login");
+                    b.Property<string>("UserLogin");
 
                     b.HasKey("Id");
 

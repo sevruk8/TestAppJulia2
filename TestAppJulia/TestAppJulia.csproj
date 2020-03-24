@@ -7,17 +7,23 @@
   <ItemGroup>
     <Compile Remove="Services\PassageService\Models\**" />
     <Compile Remove="Services\StationService\Models\**" />
+    <Compile Remove="Services\TrainService\Models\**" />
+    <Compile Remove="Services\UserService\Models\**" />
     <Content Remove="Services\PassageService\Models\**" />
     <Content Remove="Services\StationService\Models\**" />
+    <Content Remove="Services\TrainService\Models\**" />
+    <Content Remove="Services\UserService\Models\**" />
     <EmbeddedResource Remove="Services\PassageService\Models\**" />
     <EmbeddedResource Remove="Services\StationService\Models\**" />
+    <EmbeddedResource Remove="Services\TrainService\Models\**" />
+    <EmbeddedResource Remove="Services\UserService\Models\**" />
     <None Remove="Services\PassageService\Models\**" />
     <None Remove="Services\StationService\Models\**" />
+    <None Remove="Services\TrainService\Models\**" />
+    <None Remove="Services\UserService\Models\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\TrainService\Models\" />
-    <Folder Include="Services\UserService\Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
