@@ -15,7 +15,8 @@ namespace Database.Database.Entities
 
         public string UserLogin { get; set; }
 
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordSalt { get; set; }
 
         public UserType Type { get; set; } 
 
