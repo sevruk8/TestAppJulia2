@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using TestAppJulia.Services.StationService;
 using TestAppJulia.Services.StationService.Abstractions.Models;
@@ -23,25 +24,25 @@ namespace TestAppJulia.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<StationModel> GetStation([FromRoute]int id)
+        public ActionResult<StationModel> GetStation([FromRoute]Guid id)
         {
             return _stationService.GetStation(id);
         }
 
         [HttpPost]
-        public ActionResult<int> CreateStation([FromBody]StationInfo station)
+        public ActionResult<Guid> CreateStation([FromBody]StationInfo station)
         {
            return _stationService.CreateStation(station);
         }
 
         [HttpDelete]
-        public void DeleteStation([FromQuery] int id)
+        public void DeleteStation([FromQuery] Guid id)
         {
             _stationService.DeleteStation(id);
         }
 
         [HttpPut("{stationId}")]
-        public void UpdateStation([FromBody] StationInfo station, [FromRoute]int stationId)
+        public void UpdateStation([FromBody] StationInfo station, [FromRoute]Guid stationId)
         {
             _stationService.UpdateStation(stationId,station);
         }

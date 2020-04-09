@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Database.Database.Entities;
 using TestAppJulia.Services.StationService.Abstractions.Models;
 
@@ -6,14 +7,14 @@ namespace TestAppJulia.Services.StationService.Abstractions
 {
     public interface IStationService // CRUD - Create Read Update Delete
     {
-        StationModel GetStation(int id);
+        StationModel GetStation(Guid id);
 
         List<StationShortModel> GetAllStations();
 
-        void UpdateStation(int stationId,StationInfo station);
+        void UpdateStation(Guid stationId, StationInfo station);
 
-        int CreateStation(StationInfo station);
+        Guid CreateStation(StationInfo station);
 
-        void DeleteStation(int id);
+        void DeleteStation(Guid id);
     }
 }

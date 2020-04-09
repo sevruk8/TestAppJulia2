@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using TestAppJulia.Services.TrainService;
 using TestAppJulia.Services.TrainService.Abstractions.Models;
@@ -23,25 +24,25 @@ namespace TestAppJulia.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TrainModel> GetTrain([FromRoute]int id)
+        public ActionResult<TrainModel> GetTrain([FromRoute]Guid id)
         {
             return _trainService.GetTrain(id);
         }
 
         [HttpPost]
-        public ActionResult<int> CreateTrain([FromBody]TrainInfo train)
+        public ActionResult<Guid> CreateTrain([FromBody]TrainInfo train)
         {
             return _trainService.CreateTrain(train);
         }
 
         [HttpDelete]
-        public void DeleteTrain([FromQuery] int id)
+        public void DeleteTrain([FromQuery] Guid id)
         {
             _trainService.DeleteTrain(id);
         }
 
         [HttpPut("{trainId}")]
-        public void UpdateTrain([FromBody] TrainInfo train, [FromRoute]int trainId)
+        public void UpdateTrain([FromBody] TrainInfo train, [FromRoute]Guid trainId)
         {
             _trainService.UpdateTrain(trainId, train);
         }

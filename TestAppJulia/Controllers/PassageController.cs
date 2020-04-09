@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using TestAppJulia.Services.PassageService;
 using TestAppJulia.Services.PassageService.Abstractions.Models;
@@ -20,22 +21,22 @@ namespace TestAppJulia.Controllers
             return _passageService.GetAllPassages();
         }
         [HttpGet("{id}")]
-        public ActionResult<PassageModel> GetPassages([FromRoute]int id)
+        public ActionResult<PassageModel> GetPassages([FromRoute]Guid id)
         {
             return _passageService.GetPassage(id);
         }
         [HttpPost]
-        public ActionResult<int> CreatePassage([FromBody]PassageInfo passage)
+        public ActionResult<Guid> CreatePassage([FromBody]PassageInfo passage)
         {
             return _passageService.CreatePassage(passage);
         }
         [HttpDelete]
-        public void DeletePassage([FromQuery] int id)
+        public void DeletePassage([FromQuery] Guid id)
         {
             _passageService.DeletePassage(id);
         }
         [HttpPut("{passageId}")]
-        public void UpdatePassage([FromBody] PassageInfo passage, [FromRoute]int passageId)
+        public void UpdatePassage([FromBody] PassageInfo passage, [FromRoute]Guid passageId)
         {
             _passageService.UpdatePassage(passageId, passage);
         }

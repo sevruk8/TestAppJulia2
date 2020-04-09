@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using TestAppJulia.Services.PassageService.Abstractions.Models;
 
@@ -6,14 +7,14 @@ namespace TestAppJulia.Services.PassageService.Abstractions
 {
     public interface IPassageService
     {
-        PassageModel GetPassage(int id);
+        PassageModel GetPassage(Guid id);
 
         List<PassageShortModel> GetAllPassages();
 
-        void UpdatePassage(int passageId, PassageInfo passage);
+        void UpdatePassage(Guid passageId, PassageInfo passage);
 
-        int CreatePassage(PassageInfo passage);
+        Guid CreatePassage(PassageInfo passage);
 
-        void DeletePassage(int id);
+        void DeletePassage(Guid id);
     }
 }

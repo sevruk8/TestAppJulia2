@@ -8,14 +8,14 @@ namespace TestAppJulia.Services.TrainService.Abstractions
 {
     interface ITrainService
     {
-        TrainModel GetTrain(int id);
+        TrainModel GetTrain(Guid id);
 
         List<TrainShortModel> GetAllTrains();
 
-        void UpdateTrain(int trainId, TrainInfo train);
+        void UpdateTrain(Guid trainId, TrainInfo train);
 
-        int CreateTrain(TrainInfo train);
+        Guid CreateTrain(TrainInfo train);
 
-        void DeleteTrain(int id);
+        void DeleteTrain(Guid id);
     }
 }

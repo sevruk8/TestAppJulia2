@@ -15,11 +15,11 @@ namespace TestAppJulia.Services.TrainService
         {
             _dbContext = dbContext;
         }
-        public int CreateTrain(TrainInfo trainInfo)
+        public Guid CreateTrain(TrainInfo trainInfo)
         {
             var train = new Train()
             {
-                Id = (new Random()).Next(1, 1000),
+                Id = Guid.NewGuid(),
                 Name = trainInfo.Name,
                 Passagers = trainInfo.Passagers
             };
@@ -28,7 +28,7 @@ namespace TestAppJulia.Services.TrainService
             _dbContext.SaveChanges();
             return train.Id;
         }
-        public void DeleteTrain(int id)
+        public void DeleteTrain(Guid id)
         {
             var train = _dbContext.Trains.First(e => e.Id == id);
             _dbContext.Trains.Remove(train);
@@ -52,7 +52,7 @@ namespace TestAppJulia.Services.TrainService
 
             return resultTrains;
         }
-        public TrainModel GetTrain(int id)
+        public TrainModel GetTrain(Guid id)
         {
             var dbTrain = _dbContext.Trains.First(e => e.Id == id);
 
@@ -65,7 +65,7 @@ namespace TestAppJulia.Services.TrainService
 
             return train;
         }
-        public void UpdateTrain(int trainId, TrainInfo trainInfo)
+        public void UpdateTrain(Guid trainId, TrainInfo trainInfo)
         {
             var train = _dbContext.Trains.First(e => e.Id == trainId);
 

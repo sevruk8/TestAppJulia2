@@ -18,14 +18,14 @@ namespace TestAppJulia.Services.StationService
             _dbContext = dbContext;
         }
 
-        public int CreateStation(StationInfo stationInfo)
+        public Guid CreateStation(StationInfo stationInfo)
         {
             var station = new Station()
             {
-                Id = (new Random()).Next(1, 1000),
+                Id = Guid.NewGuid(),
                 City = stationInfo.City,
                 Name = stationInfo.Name,
-                Employes = new List<int>(),
+                Employes = new List<Guid>(),
                 DirectionId = new List<int>()
             };
 
@@ -34,7 +34,7 @@ namespace TestAppJulia.Services.StationService
             return station.Id;
         }
 
-        public void DeleteStation(int id)
+        public void DeleteStation(Guid id)
         {
             var station = _dbContext.Stations.First(e => e.Id == id);
             _dbContext.Stations.Remove(station);
@@ -61,7 +61,7 @@ namespace TestAppJulia.Services.StationService
             return resultStations;
         }
 
-        public StationModel GetStation(int id)
+        public StationModel GetStation(Guid id)
         {
             var dbStation = _dbContext.Stations.First(e => e.Id == id);
 
@@ -77,7 +77,7 @@ namespace TestAppJulia.Services.StationService
             return station;
         }
 
-        public void UpdateStation(int stationId, StationInfo stationInfo)
+        public void UpdateStation(Guid stationId, StationInfo stationInfo)
         {
             var station = _dbContext.Stations.First(e => e.Id == stationId);
 
@@ -87,7 +87,7 @@ namespace TestAppJulia.Services.StationService
             _dbContext.SaveChanges();
         }
 
-        public void AddEmployee (int stationId,User user)
+        public void AddEmployee (Guid stationId, User user)
         {
             if (user.Type == UserType.StationUser)
             {

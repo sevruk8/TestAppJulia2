@@ -15,11 +15,11 @@ namespace TestAppJulia.Services.PassageService
         {
             _dbContext = dbContext;
         }
-        public int CreatePassage(PassageInfo passageInfo)
+        public Guid CreatePassage(PassageInfo passageInfo)
         {
             var passage = new Passage()
             {
-                Id = (new Random()).Next(1, 1000),
+                Id = Guid.NewGuid(),
                 From = passageInfo.From,
                 To = passageInfo.To,
                 Passager = passageInfo.Passager,
@@ -30,7 +30,7 @@ namespace TestAppJulia.Services.PassageService
             _dbContext.SaveChanges();
             return passage.Id;
         }
-        public void DeletePassage(int id)
+        public void DeletePassage(Guid id)
         {
             var passage = _dbContext.Passages.First(e => e.Id == id);
             _dbContext.Passages.Remove(passage);
@@ -55,7 +55,7 @@ namespace TestAppJulia.Services.PassageService
 
             return resultPassages;
         }
-        public PassageModel GetPassage(int id)
+        public PassageModel GetPassage(Guid id)
         {
             var dbPassage = _dbContext.Passages.First(e => e.Id == id);
 
@@ -70,7 +70,7 @@ namespace TestAppJulia.Services.PassageService
 
             return passage;
         }
-        public void UpdatePassage(int passageId, PassageInfo passageInfo)
+        public void UpdatePassage(Guid passageId, PassageInfo passageInfo)
         {
             var passage = _dbContext.Passages.First(e => e.Id == passageId);
 

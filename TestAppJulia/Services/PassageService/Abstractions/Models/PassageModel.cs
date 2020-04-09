@@ -11,6 +11,6 @@ namespace TestAppJulia.Services.PassageService.Abstractions.Models
         public string To { get; set; }
         public List<int> IdTrain { get; set; }
         public string Passager { get; set; }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

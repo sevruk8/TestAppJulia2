@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Identity.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TestAppJulia.Services.UserService;
 using TestAppJulia.Services.UserService.Abstractions.Models;
 
@@ -15,6 +19,7 @@ namespace TestAppJulia.Controllers
         {
             _userService = userService;
         }
+        
 
         [HttpGet]
         public ActionResult<List<UserShortModel>> GetUsers()
@@ -23,25 +28,59 @@ namespace TestAppJulia.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<UserModel> GetUser([FromRoute]int id)
+        public ActionResult<UserModel> GetUser([FromRoute]Guid id)
         {
             return _userService.GetUser(id);
         }
+        
+        /// <summary>
+        /// Регистрация
+        /// </summary>
+        /// <param name="registrationModel"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Registration")]
+        public async Task Registration([FromQuery]RegistrationModel registrationModel)
+        {
+            await _userService.Registration(registrationModel);
+        }
 
         [HttpPost]
-        public ActionResult<int> CreateUser([FromBody]UserInfo user)
+        public ActionResult<Guid> CreateUser([FromBody]UserInfo user)
         {
             return _userService.CreateUser(user);
         }
+        /// <summary>
+        /// Авторизация
+        /// </summary>
+        /// <param name="authorizationModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("Authorize")]
+        [ProducesResponseType(typeof(Token), 200)]
+        public async Task<Token> Authorize(AuthorizationModel authorizationModel)
+        {
+            var token = await _userService.Authorization(authorizationModel);
+            return token;
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("Test")]
+        public async Task<int[]> Registration()
+        {
+            return new int[] { 1, 2, 3, 4, 5 };
+        }
 
         [HttpDelete]
-        public void DeleteUser([FromQuery] int id)
+        public void DeleteUser([FromQuery] Guid id)
         {
             _userService.DeleteUser(id);
         }
 
         [HttpPut("{userId}")]
-        public void UpdateUser([FromBody] UserInfo user, [FromRoute]int userId)
+        public void UpdateUser([FromBody] UserInfo user, [FromRoute]Guid userId)
         {
             _userService.UpdateUser(userId, user);
         }
